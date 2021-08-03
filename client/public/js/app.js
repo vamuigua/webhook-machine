@@ -1977,6 +1977,17 @@ __webpack_require__.r(__webpack_exports__);
           _this.unreadTotal++;
         }
       });
+      Echo["private"]("App.Models.User." + this.userId).notification(function (notification) {
+        var notificationObject = {
+          subject: notification.subject,
+          link: notification.link,
+          type: notification.type
+        };
+
+        _this.allUnreadNotifications.push({
+          data: notificationObject
+        });
+      });
     }
   }
 });
@@ -43906,7 +43917,9 @@ var render = function() {
                       [
                         _c("i", { staticClass: "fa fa-bell nav-icon" }),
                         _vm._v(
-                          " New Feedback\n                        Form\n                    "
+                          "\n                        " +
+                            _vm._s(unReadNotification.data.subject) +
+                            "\n                    "
                         )
                       ]
                     ),
