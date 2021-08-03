@@ -104,7 +104,7 @@ Your done...The app should now be running on your browser 👍
 
 ## Built With
 
-- Laravel, for processing [Scheduling Jobs](https://laravel.com/docs/8.x/scheduling#scheduling-queued-jobs) and [Broadcasting Notifications](https://laravel.com/docs/8.x/notifications#broadcast-notifications)
+- Laravel, for processing [Scheduled Jobs](https://laravel.com/docs/8.x/scheduling#scheduling-queued-jobs) and [Broadcasting Notifications](https://laravel.com/docs/8.x/notifications#broadcast-notifications)
 - Vue JS, for Reactive UI [Components](https://vuejs.org/v2/guide/components.html) on the client app
 - [Pusher](https://pusher.com/), for broadcasting events
 - Laravel Echo, for subscribing to channels and listening for events
