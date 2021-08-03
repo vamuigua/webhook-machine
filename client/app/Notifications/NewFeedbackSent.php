@@ -32,7 +32,7 @@ class NewFeedbackSent extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'broadcast'];
     }
 
     /**
@@ -73,13 +73,22 @@ class NewFeedbackSent extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return BroadcastMessage
      */
-    public function toBroadcast($notifiable)
+    public function toBroadcast()
     {
         return new BroadcastMessage([
             'subject' => 'You have a New Feedback Form!',
             'link' => $this->link,
             'type' => 'feedback-sent',
-            'user' => $notifiable
         ]);
+    }
+
+    /**
+     * Get the type of the notification being broadcast.
+     *
+     * @return string
+     */
+    public function broadcastType()
+    {
+        return 'feedback-sent';
     }
 }
