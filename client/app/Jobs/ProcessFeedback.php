@@ -45,19 +45,18 @@ class ProcessFeedback extends ProcessWebhookJob implements ShouldQueue
     public function handle()
     {
         $data = json_decode($this->webhookCall, true);
-        logger($data['payload']['survey_link']);
 
-        // $payload = $data['payload'];
-        // $link = $payload['link'];
+        $payload = $data['payload'];
+        $link = $payload['link'];
 
-        // foreach ($payload['users'] as $key => $user_id) {
-        //     $userInstance = User::find($user_id);
-        //     if ($userInstance) {
-        //         // Send Notification to email & app(database)
-        //         $userInstance->notify(new NewFeedbackSent($link));
-        //         // fire event to notify user on the UI
-        //         FeedbackFormSent::dispatch($userInstance->id);
-        //     }
-        // }
+        foreach ($payload['users'] as $key => $user_id) {
+            $userInstance = User::find($user_id);
+            if ($userInstance) {
+                // Send Notification to email & app(database)
+                $userInstance->notify(new NewFeedbackSent($link));
+                // fire event to notify user on the UI
+                FeedbackFormSent::dispatch($userInstance->id);
+            }
+        }
     }
 }
