@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::webhooks('webhook-feedback-url');
+Route::webhooks('webhook-receiving-url');
 
 Auth::routes();
 
