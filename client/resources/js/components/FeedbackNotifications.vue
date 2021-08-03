@@ -59,8 +59,8 @@
                             :href="unReadNotification.data.link"
                             target="_blank"
                         >
-                            <i class="fa fa-bell nav-icon"></i> New Feedback
-                            Form
+                            <i class="fa fa-bell nav-icon"></i>
+                            {{ unReadNotification.data.subject }}
                         </a>
                         <div class="dropdown-divider"></div>
                     </div>
@@ -94,6 +94,19 @@ export default {
                     this.unreadTotal++;
                 }
             });
+
+            Echo.private("App.Models.User." + this.userId).notification(
+                notification => {
+                    let notificationObject = {
+                        subject: notification.subject,
+                        link: notification.link,
+                        type: notification.type
+                    };
+                    this.allUnreadNotifications.push({
+                        data: notificationObject
+                    });
+                }
+            );
         }
     }
 };
